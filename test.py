@@ -4,6 +4,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
+from sklearn.feature_extraction.text import CountVectorizer
 import string
 
 nltk.download("punkt")
@@ -40,3 +41,14 @@ df["cleaned_review"] = df["user_review"].astype(str).apply(preprocess)
 # Display the cleaned text
 print("\nDataFrame with Cleaned Reviews:")
 print(df[["user_review", "cleaned_review"]].head())
+
+
+# Feature Extraction: Bag of Words
+
+# Initialize the CountVectorizer
+vectorizer = CountVectorizer()
+# Fit and transform the cleaned text data
+X = vectorizer.fit_transform(df["cleaned_review"])
+# Display the feature matrix
+print("\nFeature Matrix:")
+print(X.toarray())
