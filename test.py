@@ -10,6 +10,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.feature_extraction.text import TfidfVectorizer
 import string
+import joblib
 
 nltk.download("punkt")
 nltk.download("stopwords")
@@ -79,3 +80,7 @@ print(accuracy_score(y_test, y_pred))
 
 print("\nClassification Report:")
 print(classification_report(y_test, y_pred))
+
+# Save the trained model and vectorizer
+joblib.dump(classifier, "sentiment_model.pkl")
+joblib.dump(vectorizer, "vectorizer.pkl")
